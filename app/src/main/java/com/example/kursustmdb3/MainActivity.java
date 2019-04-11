@@ -16,8 +16,6 @@ import static com.example.kursustmdb3.MovieResponse.*;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = MainActivity.class.getSimpleName();
-
     private RecyclerViewAdapter adapter;
     private RecyclerView recyclerView;
 
@@ -31,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
         MovieService.getAPI()
-                .jadwalRilis("MOVIE")
+                .jadwalRilis("119377682a1e98f078b0484aa494acb1")
                 .enqueue(new Callback<MovieResponse>() {
                     @Override
                     public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
@@ -40,7 +38,12 @@ public class MainActivity extends AppCompatActivity {
                             adapter = new RecyclerViewAdapter(list);
                             recyclerView.setAdapter(adapter);
 
+                            for (MovieResponse.ResultsBean resultsBean :list) {
+                                resultsBean.getReleaseDate();
 
+                                Log.d("berhasil", resultsBean.getReleaseDate());
+
+                            }
                         }
                     }
 
