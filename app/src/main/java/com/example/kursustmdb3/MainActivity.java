@@ -8,8 +8,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import java.util.List;
+
+import static com.example.kursustmdb3.MovieResponse.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,25 +27,29 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         recyclerView = findViewById(R.id.recycler_view);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
 
         MovieService.getAPI()
-                .jadwalRilis("Movie")
-                .enqueue(new Callback<MovieService>() {
+                .jadwalRilis("MOVIE")
+                .enqueue(new Callback<MovieResponse>() {
                     @Override
-                    public void onResponse(Call<MovieService> call, Response<MovieService> response) {
+                    public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
                         if (response.isSuccessful()){
-                            List<MovieResponse.ResultsBean> list = response.body().getClass();
+                            List<MovieResponse.ResultsBean> list = response.body().getResults();
                             adapter = new RecyclerViewAdapter(list);
                             recyclerView.setAdapter(adapter);
+
+
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<MovieService> call, Throwable t) {
+                    public void onFailure(Call<MovieResponse> call, Throwable t) {
+                        Log.e("pesan gagal", t.getMessage());
 
                     }
+
                 });
 
     }

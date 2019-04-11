@@ -6,7 +6,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MovieService {
     public static final String BASE_URL ="http://developers.themoviedb.org/3/";
 
-    private Retrofit retrofit;
 
     public static APIEndPoint getAPI() {
         final Retrofit retrofit = new Retrofit.Builder()

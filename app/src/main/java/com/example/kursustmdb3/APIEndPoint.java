@@ -6,6 +6,6 @@ import retrofit2.http.Query;
 
 public interface APIEndPoint {
     @GET("movie/now_playing")
-    Call<MovieService> jadwalRilis(
+    Call<MovieResponse> jadwalRilis(
             @Query("api_key") String key);
 }

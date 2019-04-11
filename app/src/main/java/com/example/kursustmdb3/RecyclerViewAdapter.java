@@ -30,7 +30,7 @@ private Context context;
     @Override
     public void onBindViewHolder( ViewHolder holder, int i) {
     holder.judul.setText(dataList.get(i).getTitle());
-    holder.judul.setText(dataList.get(i).getReleaseDate());
+    holder.rilis.setText(dataList.get(i).getReleaseDate());
     }
 
     @Override
@@ -44,7 +44,6 @@ private Context context;
             super(itemView);
             judul = itemView.findViewById(R.id.judul_movie);
             rilis = itemView.findViewById(R.id.tahun_rlis);
-
         }
     }
 }
